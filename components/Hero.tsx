@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownRight, Move, Circle } from 'lucide-react';
-import { NumberGame } from './NumberGame';
+import { ArrowDownRight, Move, Circle, Linkedin, Mail, Twitter, Link } from 'lucide-react';
+import { MemoryGame } from './MemoryGame';
 
 // --- Physics Circles Component (Bouncing Balls) ---
 const PhysicsCircles = () => {
@@ -207,6 +207,13 @@ export const Hero: React.FC = () => {
 
   const name = "Pradeep Kanna.".split("");
 
+  const scrollToInitiatives = () => {
+    const element = document.getElementById('initiatives');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen bg-[#F5F5F7] dark:bg-[#111] pt-24 pb-8 px-2 md:px-4 flex flex-col font-sans overflow-hidden transition-colors duration-500">
       
@@ -272,7 +279,7 @@ export const Hero: React.FC = () => {
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-12 bg-accent-blue/30 rotate-12 backdrop-blur-sm z-20 rounded-sm"></div>
                 <div className="w-full aspect-[4/5] bg-slate-200 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-500">
                     <img 
-                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        src="https://pradeepkanna.com/wp-content/uploads/2025/02/IMG_20250115_113152600_HDR-scaled.jpg" 
                         alt="Pradeep" 
                         className="w-full h-full object-cover"
                     />
@@ -288,7 +295,7 @@ export const Hero: React.FC = () => {
 
         {/* --- Bottom Row: Roles & Interactive --- */}
 
-        {/* Box 1: Roles Description */}
+        {/* Box 1: Roles Description & Socials */}
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -297,22 +304,68 @@ export const Hero: React.FC = () => {
         >
              <div className="absolute top-0 right-0 w-64 h-64 bg-accent-purple/5 dark:bg-accent-purple/10 rounded-full blur-[80px] group-hover:bg-accent-purple/10 dark:group-hover:bg-accent-purple/20 transition-colors" />
              
-             <div>
+             <div className="relative z-10">
                 <h3 className="font-display text-3xl md:text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
                    Engineer. Journalist. Historian.
                 </h3>
-                <p className="font-display text-3xl md:text-4xl font-bold text-slate-300 dark:text-white/30 leading-tight">
+                <p className="font-display text-3xl md:text-4xl font-bold text-slate-300 dark:text-white/30 leading-tight mb-6">
                    Startup Generalist.
                 </p>
+
+                {/* Social Icons */}
+                <div className="flex items-center gap-3">
+                    <a 
+                        href="https://linkedin.com/in/pradeepkanna" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-[#0077b5] hover:text-white dark:hover:bg-[#0077b5] text-slate-500 dark:text-slate-400 transition-all duration-300"
+                        title="LinkedIn"
+                    >
+                        <Linkedin size={18} />
+                    </a>
+                    <a 
+                        href="mailto:pradeepkanna585@gmail.com" 
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-accent-red hover:text-white dark:hover:bg-accent-red text-slate-500 dark:text-slate-400 transition-all duration-300"
+                        title="Email"
+                    >
+                        <Mail size={18} />
+                    </a>
+                    <a 
+                        href="https://twitter.com/pradeepkanna" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black text-slate-500 dark:text-slate-400 transition-all duration-300"
+                        title="Twitter"
+                    >
+                        <Twitter size={18} />
+                    </a>
+                    <a 
+                        href="https://topmate.io/pradeep_kanna12/" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="h-10 px-4 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-accent-green hover:text-white dark:hover:bg-accent-green text-slate-500 dark:text-slate-400 transition-all duration-300 text-xs font-bold uppercase tracking-wider"
+                        title="Topmate"
+                    >
+                        Topmate
+                    </a>
+                </div>
              </div>
 
-             <div className="flex items-center justify-between">
+             <div className="relative z-10 flex items-center justify-between mt-auto">
                 <span className="px-4 py-2 rounded-full border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-500 dark:text-white/50 uppercase tracking-wider group-hover:bg-slate-50 dark:group-hover:bg-white/5 transition-colors">
                     Based in India
                 </span>
-                <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center group-hover:bg-accent-yellow text-slate-900 dark:text-white group-hover:text-black transition-all duration-300">
-                    <ArrowDownRight size={20} />
-                </div>
+                
+                {/* Blog Button */}
+                <button 
+                    onClick={scrollToInitiatives}
+                    className="flex items-center gap-3 pl-4 pr-2 py-2 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-brand-periwinkle hover:text-white dark:hover:bg-brand-periwinkle group/btn transition-all duration-300 cursor-pointer"
+                >
+                    <span className="text-sm font-medium text-slate-900 dark:text-white group-hover/btn:text-white">Read Blog</span>
+                    <div className="w-8 h-8 rounded-full bg-white dark:bg-white/10 flex items-center justify-center text-slate-900 dark:text-white group-hover/btn:bg-white/20 group-hover/btn:text-white transition-all">
+                        <ArrowDownRight size={16} />
+                    </div>
+                </button>
              </div>
         </motion.div>
 
@@ -332,14 +385,14 @@ export const Hero: React.FC = () => {
             <PhysicsCircles />
         </motion.div>
 
-        {/* Box 3: Number Game (Replaces Elastic String) */}
+        {/* Box 3: Memory Game (History Sequences) */}
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="md:col-span-3 h-[300px] bg-slate-50 dark:bg-[#1A1A1A] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 shadow-xl transition-colors duration-500"
         >
-            <NumberGame />
+            <MemoryGame />
         </motion.div>
 
       </div>

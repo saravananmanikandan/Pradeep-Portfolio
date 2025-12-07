@@ -30,13 +30,15 @@ export const Footer: React.FC = () => {
                 LinkedIn Profile
               </a>
               <a 
-                href="#"
+                href="https://topmate.io/pradeep_kanna12/"
+                target="_blank"
+                rel="noreferrer"
                 className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-green transition-colors group"
               >
                  <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-green/10 transition-colors">
                     <ArrowUpRight size={20} />
                 </div>
-                Taptol
+                Topmate
               </a>
             </div>
           </div>

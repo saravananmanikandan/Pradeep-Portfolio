@@ -16,16 +16,6 @@ const content = [
   "I build systems that last."
 ];
 
-// Cyclic accent colors for lines
-const colors = [
-    'text-accent-yellow',
-    'text-accent-purple',
-    'text-accent-aqua',
-    'text-accent-red',
-    'text-accent-blue',
-    'text-accent-green'
-];
-
 const TextLine: React.FC<{ text: string; index: number; total: number }> = ({ text, index, total }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -37,16 +27,13 @@ const TextLine: React.FC<{ text: string; index: number; total: number }> = ({ te
   const scale = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.95, 1.02, 0.95]);
   const x = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [-20, 0, -20]);
   
-  // Dynamic color class based on index
-  const accentColorClass = colors[index % colors.length];
-
   return (
     <motion.div 
       ref={ref}
       style={{ opacity, scale, x }}
       className="py-4 md:py-6"
     >
-      <span className={`font-display text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight block transition-colors duration-500 ${accentColorClass} brightness-110 saturate-150`}>
+      <span className="font-display text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight block transition-colors duration-500 text-slate-900 dark:text-slate-200">
         {text}
       </span>
     </motion.div>
