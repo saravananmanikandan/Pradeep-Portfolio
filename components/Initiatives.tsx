@@ -32,56 +32,81 @@ const SpotlightCard: React.FC<{ item: BlogPost; index: number }> = ({ item, inde
     return '';
   };
 
+  // Determine if this item should be clickable
+  // Events are static updates, others (posts, articles) are links
+  const isEvent = item.type === 'events';
+  const isClickable = !isEvent;
+
+  // Use ACF URL for Hindu articles if available, otherwise fallback to WP link
+  const linkUrl = item.acf?.post_url || item.link;
+
+  // Render proper tag
+  const Wrapper = isClickable ? motion.a : motion.div;
+  const wrapperProps = isClickable ? {
+      href: linkUrl,
+      target: "_blank",
+      rel: "noopener noreferrer"
+  } : {};
+
   return (
-    <motion.a
-      ref={divRef}
-      href={item.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+    <Wrapper
+      ref={divRef as any}
+      {...wrapperProps}
+      onMouseMove={isClickable ? handleMouseMove : undefined}
+      onMouseLeave={isClickable ? handleMouseLeave : undefined}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="group relative flex flex-col justify-between p-8 rounded-3xl bg-white border border-slate-200 dark:bg-white/[0.02] dark:border-white/5 overflow-hidden h-[340px] shadow-sm hover:shadow-xl dark:shadow-none transition-all duration-500 hover:border-accent-blue/40"
+      className={`
+        group relative flex flex-col justify-between p-8 rounded-3xl bg-white border border-slate-200 dark:bg-white/[0.02] dark:border-white/5 overflow-hidden h-[340px] shadow-sm transition-all duration-500
+        ${isClickable ? 'hover:shadow-xl dark:shadow-none hover:border-accent-blue/40 cursor-pointer' : ''}
+      `}
     >
-      {/* Spotlight Effect - Blue Accent */}
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{
-          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(97, 173, 235, 0.15), transparent 40%)`,
-        }}
-      />
+      {/* Spotlight Effect - Blue Accent - Only if clickable */}
+      {isClickable && (
+        <div
+            className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+            style={{
+            background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(97, 173, 235, 0.15), transparent 40%)`,
+            }}
+        />
+      )}
       
-      <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {isClickable && (
+          <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      )}
 
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-6">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 border border-slate-200 dark:border-white/10 px-2 py-1 rounded-md bg-slate-50 dark:bg-white/5">
                 {new Date(item.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
             </span>
-            <div className="p-2 rounded-full bg-slate-100 dark:bg-white/5 text-slate-400 group-hover:text-accent-blue transition-colors">
-                <ArrowRight size={16} className="transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-            </div>
+            {isClickable && (
+                <div className="p-2 rounded-full bg-slate-100 dark:bg-white/5 text-slate-400 group-hover:text-accent-blue transition-colors">
+                    <ArrowRight size={16} className="transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                </div>
+            )}
         </div>
 
         <h3 
-            className="font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-4 line-clamp-2 group-hover:text-accent-blue transition-colors leading-tight"
+            className={`font-display text-xl font-bold text-slate-800 dark:text-slate-100 mb-4 line-clamp-2 leading-tight ${isClickable ? 'group-hover:text-accent-blue transition-colors' : ''}`}
             dangerouslySetInnerHTML={{ __html: item.title.rendered }} 
         />
         
         <div 
-            className="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 font-light leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity"
+            className={`text-sm text-slate-600 dark:text-slate-400 line-clamp-3 font-light leading-relaxed ${isClickable ? 'opacity-80 group-hover:opacity-100 transition-opacity' : ''}`}
             dangerouslySetInnerHTML={{ __html: getExcerpt() }} 
         />
       </div>
 
-      <div className="relative z-10 mt-auto pt-6 border-t border-slate-100 dark:border-white/5">
-         <span className="text-xs font-medium text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors flex items-center gap-2">
-            Read Full Story <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-         </span>
-      </div>
-    </motion.a>
+      {isClickable && (
+          <div className="relative z-10 mt-auto pt-6 border-t border-slate-100 dark:border-white/5">
+            <span className="text-xs font-medium text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors flex items-center gap-2">
+                Read Full Story <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+            </span>
+          </div>
+      )}
+    </Wrapper>
   );
 };
 

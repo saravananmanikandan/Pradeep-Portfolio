@@ -50,6 +50,11 @@ export const Footer: React.FC = () => {
              <div className="text-slate-600 dark:text-slate-600 text-sm">
                 &copy; 2025 Pradeep Kanna Ravichandran.<br/>All Rights Reserved.
              </div>
+             <div className="text-slate-400 dark:text-slate-700 text-xs mt-2 font-medium">
+                <a href="https://www.linkedin.com/in/saravanan-manikandan-641bb0212/" target="_blank" rel="noreferrer" className="hover:text-brand-periwinkle transition-colors">
+                    Designed and Developed by Saravanan
+                </a>
+             </div>
           </div>
         </div>
       </div>

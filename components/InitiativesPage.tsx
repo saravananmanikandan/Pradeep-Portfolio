@@ -25,17 +25,28 @@ const ContentCard: React.FC<{ item: BlogPost; type: 'event' | 'article' | 'recen
             ? stripHtml(item.content.rendered).substring(0, 150) + '...'
             : '';
 
+    // Prioritize ACF post_url for articles
+    const linkUrl = item.acf?.post_url || item.link;
+    
+    // Only articles (Hindu) should link out. Events are static.
+    const isClickable = type === 'article';
+    const Wrapper = isClickable ? motion.a : motion.div;
+    const wrapperProps = isClickable ? {
+        href: linkUrl,
+        target: "_blank",
+        rel: "noopener noreferrer"
+    } : {};
+
     return (
-        <motion.a 
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
+        <Wrapper 
+            {...wrapperProps}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className={`
                 group block relative bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 
-                overflow-hidden hover:border-brand-periwinkle/50 dark:hover:border-brand-periwinkle/50 transition-all duration-500
+                overflow-hidden transition-all duration-500
+                ${isClickable ? 'hover:border-brand-periwinkle/50 dark:hover:border-brand-periwinkle/50 cursor-pointer' : ''}
                 ${type === 'recent' ? 'md:col-span-2 md:flex md:h-[400px]' : 'h-full flex flex-col'}
                 ${type !== 'recent' ? 'rounded-2xl' : 'rounded-3xl'}
             `}
@@ -49,9 +60,9 @@ const ContentCard: React.FC<{ item: BlogPost; type: 'event' | 'article' | 'recen
                     <img 
                         src={imageUrl} 
                         alt="Featured" 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className={`w-full h-full object-cover transition-transform duration-700 ${isClickable ? 'group-hover:scale-105' : ''}`}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                    {isClickable && <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />}
                 </div>
             )}
 
@@ -73,7 +84,7 @@ const ContentCard: React.FC<{ item: BlogPost; type: 'event' | 'article' | 'recen
                         )}
                     </div>
 
-                    <h3 className={`font-display font-bold text-slate-900 dark:text-slate-100 mb-4 group-hover:text-brand-periwinkle transition-colors ${type === 'recent' ? 'text-3xl' : 'text-xl'}`}>
+                    <h3 className={`font-display font-bold text-slate-900 dark:text-slate-100 mb-4 ${isClickable ? 'group-hover:text-brand-periwinkle' : ''} transition-colors ${type === 'recent' ? 'text-3xl' : 'text-xl'}`}>
                         <span dangerouslySetInnerHTML={{ __html: item.title.rendered }} />
                     </h3>
 
@@ -82,11 +93,13 @@ const ContentCard: React.FC<{ item: BlogPost; type: 'event' | 'article' | 'recen
                     </p>
                 </div>
 
-                <div className="mt-8 flex items-center gap-2 text-sm font-medium text-slate-900 dark:text-white">
-                    Read Story <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </div>
+                {isClickable && (
+                    <div className="mt-8 flex items-center gap-2 text-sm font-medium text-slate-900 dark:text-white">
+                        Read Story <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                )}
             </div>
-        </motion.a>
+        </Wrapper>
     );
 };
 

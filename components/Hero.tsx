@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownRight, Move, Circle, Linkedin, Mail, Twitter, Link } from 'lucide-react';
@@ -343,10 +344,14 @@ export const Hero: React.FC = () => {
                         href="https://topmate.io/pradeep_kanna12/" 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="h-10 px-4 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-accent-green hover:text-white dark:hover:bg-accent-green text-slate-500 dark:text-slate-400 transition-all duration-300 text-xs font-bold uppercase tracking-wider"
+                        className="h-10 px-4 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-accent-green hover:text-white dark:hover:bg-accent-green text-slate-500 dark:text-slate-400 transition-all duration-300 group/topmate"
                         title="Topmate"
                     >
-                        Topmate
+                        <img 
+                            src="https://topmate.io/_next/image?url=%2Fimages%2Fcommon%2Ftopmate-light.svg&w=384&q=75" 
+                            alt="Topmate" 
+                            className="h-4 w-auto opacity-70 group-hover/topmate:opacity-100 transition-opacity dark:invert-0 invert group-hover/topmate:invert-0" 
+                        />
                     </a>
                 </div>
              </div>

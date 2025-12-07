@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
-  currentView: 'home' | 'family-history' | 'initiatives';
-  onNavigate: (view: 'home' | 'family-history' | 'initiatives', hash?: string) => void;
+  currentView: 'home' | 'family-history' | 'initiatives' | 'projects';
+  onNavigate: (view: 'home' | 'family-history' | 'initiatives' | 'projects', hash?: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
@@ -39,6 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
   const navItems = [
     { name: 'Home', action: () => onNavigate('home') },
     { name: 'Family History', action: () => onNavigate('family-history') },
+    { name: 'Projects', action: () => onNavigate('projects') },
     { name: 'Initiatives', action: () => onNavigate('initiatives') },
     { name: 'Contact', action: () => {
       const footer = document.getElementById('contact');
@@ -68,6 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
               className={`text-sm font-medium transition-colors relative group ${
                 (currentView === 'family-history' && item.name === 'Family History') || 
                 (currentView === 'initiatives' && item.name === 'Initiatives') ||
+                (currentView === 'projects' && item.name === 'Projects') ||
                 (currentView === 'home' && item.name === 'Home')
                 ? 'text-brand-periwinkle'
                 : 'text-slate-600 dark:text-slate-400 hover:text-brand-periwinkle dark:hover:text-brand-periwinkle'
@@ -77,6 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
               <span className={`absolute -bottom-1 left-0 h-px bg-brand-periwinkle transition-all duration-300 ${
                  (currentView === 'family-history' && item.name === 'Family History') || 
                  (currentView === 'initiatives' && item.name === 'Initiatives') ||
+                 (currentView === 'projects' && item.name === 'Projects') ||
                  (currentView === 'home' && item.name === 'Home')
                  ? 'w-full'
                  : 'w-0 group-hover:w-full'

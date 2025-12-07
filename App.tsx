@@ -6,12 +6,13 @@ import { Experience } from './components/Experience';
 import { Initiatives } from './components/Initiatives';
 import { FamilyHistory } from './components/FamilyHistory';
 import { InitiativesPage } from './components/InitiativesPage';
+import { ProjectsPage } from './components/ProjectsPage';
 import { Footer } from './components/Footer';
 
 function App() {
-  const [view, setView] = useState<'home' | 'family-history' | 'initiatives'>('home');
+  const [view, setView] = useState<'home' | 'family-history' | 'initiatives' | 'projects'>('home');
 
-  const handleNavigate = (page: 'home' | 'family-history' | 'initiatives', hash?: string) => {
+  const handleNavigate = (page: 'home' | 'family-history' | 'initiatives' | 'projects', hash?: string) => {
     setView(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -40,8 +41,10 @@ function App() {
           </>
         ) : view === 'family-history' ? (
           <FamilyHistory />
-        ) : (
+        ) : view === 'initiatives' ? (
           <InitiativesPage />
+        ) : (
+          <ProjectsPage />
         )}
       </main>
       
