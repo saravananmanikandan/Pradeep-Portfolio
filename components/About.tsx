@@ -16,6 +16,16 @@ const content = [
   "I build systems that last."
 ];
 
+// Cyclic accent colors for lines
+const colors = [
+    'text-accent-yellow',
+    'text-accent-purple',
+    'text-accent-aqua',
+    'text-accent-red',
+    'text-accent-blue',
+    'text-accent-green'
+];
+
 const TextLine: React.FC<{ text: string; index: number; total: number }> = ({ text, index, total }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -23,9 +33,12 @@ const TextLine: React.FC<{ text: string; index: number; total: number }> = ({ te
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.2, 1, 0.2]);
-  const scale = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.95, 1.05, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.1, 1, 0.1]);
+  const scale = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0.95, 1.02, 0.95]);
   const x = useTransform(scrollYProgress, [0.3, 0.5, 0.7], [-20, 0, -20]);
+  
+  // Dynamic color class based on index
+  const accentColorClass = colors[index % colors.length];
 
   return (
     <motion.div 
@@ -33,7 +46,7 @@ const TextLine: React.FC<{ text: string; index: number; total: number }> = ({ te
       style={{ opacity, scale, x }}
       className="py-4 md:py-6"
     >
-      <span className="font-display text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-400 dark:from-white dark:to-slate-400 leading-tight block">
+      <span className={`font-display text-2xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight block transition-colors duration-500 ${accentColorClass} brightness-110 saturate-150`}>
         {text}
       </span>
     </motion.div>
@@ -42,9 +55,9 @@ const TextLine: React.FC<{ text: string; index: number; total: number }> = ({ te
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="min-h-screen flex flex-col justify-center items-center py-24 px-6 relative overflow-hidden">
-      {/* Subtle Background Glow - Kept but made more subtle to blend with global animation */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-periwinkle/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="about" className="min-h-screen bg-[#F5F5F7] dark:bg-brand-black flex flex-col justify-center items-center py-24 px-6 relative overflow-hidden transition-colors duration-500">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-periwinkle/10 dark:bg-brand-periwinkle/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-5xl w-full relative z-10 text-center">
         {content.map((line, i) => (

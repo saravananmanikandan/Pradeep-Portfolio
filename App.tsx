@@ -4,11 +4,9 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Experience } from './components/Experience';
 import { Initiatives } from './components/Initiatives';
-import { NetworkGame } from './components/NetworkGame';
 import { FamilyHistory } from './components/FamilyHistory';
 import { InitiativesPage } from './components/InitiativesPage';
 import { Footer } from './components/Footer';
-import { BackgroundAnimation } from './components/BackgroundAnimation';
 
 function App() {
   const [view, setView] = useState<'home' | 'family-history' | 'initiatives'>('home');
@@ -29,30 +27,25 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen text-slate-900 dark:text-slate-200 selection:bg-brand-periwinkle/30 selection:text-brand-black dark:selection:text-white relative">
-      <BackgroundAnimation />
+    <div className="bg-[#F5F5F7] dark:bg-brand-black min-h-screen text-slate-900 dark:text-slate-200 selection:bg-brand-periwinkle/30 selection:text-brand-black dark:selection:text-white transition-colors duration-500">
+      <Navbar currentView={view} onNavigate={handleNavigate} />
       
-      <div className="relative z-10">
-        <Navbar currentView={view} onNavigate={handleNavigate} />
-        
-        <main>
-          {view === 'home' ? (
-            <>
-              <Hero />
-              <About />
-              <Experience />
-              <Initiatives onNavigate={handleNavigate} />
-              <NetworkGame />
-            </>
-          ) : view === 'family-history' ? (
-            <FamilyHistory />
-          ) : (
-            <InitiativesPage />
-          )}
-        </main>
-        
-        <Footer />
-      </div>
+      <main>
+        {view === 'home' ? (
+          <>
+            <Hero />
+            <About />
+            <Experience />
+            <Initiatives onNavigate={handleNavigate} />
+          </>
+        ) : view === 'family-history' ? (
+          <FamilyHistory />
+        ) : (
+          <InitiativesPage />
+        )}
+      </main>
+      
+      <Footer />
     </div>
   );
 }

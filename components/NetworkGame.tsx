@@ -6,6 +6,7 @@ interface Point {
   vx: number;
   vy: number;
   radius: number;
+  color: string;
 }
 
 export const NetworkGame: React.FC = () => {
@@ -23,15 +24,15 @@ export const NetworkGame: React.FC = () => {
     const connectionDistance = 150;
     let mouse = { x: -1000, y: -1000 };
 
-    // Function to get current theme colors
-    const getColors = () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      return {
-        point: isDark ? 'rgba(163, 180, 214, 0.5)' : 'rgba(163, 180, 214, 0.8)',
-        line: isDark ? '163, 180, 214' : '100, 116, 139', // Periwinkle vs Slate-500
-        mouseLine: isDark ? '255, 255, 255' : '10, 10, 10'
-      };
-    };
+    // New Palette
+    const accentColors = [
+        'rgba(252, 215, 72, 0.8)',   // Yellow
+        'rgba(145, 127, 240, 0.8)',  // Purple
+        'rgba(114, 210, 190, 0.8)',  // Aqua
+        'rgba(249, 127, 122, 0.8)',  // Red
+        'rgba(97, 173, 235, 0.8)',   // Blue
+        'rgba(63, 173, 75, 0.8)'     // Green
+    ];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -47,7 +48,8 @@ export const NetworkGame: React.FC = () => {
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
-          radius: Math.random() * 2 + 1
+          radius: Math.random() * 2 + 1,
+          color: accentColors[Math.floor(Math.random() * accentColors.length)]
         });
       }
     };
@@ -55,7 +57,9 @@ export const NetworkGame: React.FC = () => {
     const draw = () => {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const colors = getColors();
+      const isDark = document.documentElement.classList.contains('dark');
+      const lineColor = isDark ? '163, 180, 214' : '100, 116, 139'; // Keep lines subtle
+      const mouseLineColor = isDark ? '255, 255, 255' : '10, 10, 10';
 
       // Update and Draw Points
       points.forEach(point => {
@@ -87,7 +91,7 @@ export const NetworkGame: React.FC = () => {
         // Draw Dot
         ctx.beginPath();
         ctx.arc(point.x, point.y, point.radius, 0, Math.PI * 2);
-        ctx.fillStyle = colors.point;
+        ctx.fillStyle = point.color;
         ctx.fill();
       });
 
@@ -102,7 +106,9 @@ export const NetworkGame: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(points[i].x, points[i].y);
             ctx.lineTo(points[j].x, points[j].y);
-            ctx.strokeStyle = `rgba(${colors.line}, ${1 - dist / connectionDistance})`;
+            // Use subtle line color, but maybe tint it slightly towards one of the point colors?
+            // For "Apple Pro", keep lines neutral/clean.
+            ctx.strokeStyle = `rgba(${lineColor}, ${1 - dist / connectionDistance})`;
             ctx.stroke();
           }
         }
@@ -115,9 +121,9 @@ export const NetworkGame: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(points[i].x, points[i].y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(${colors.mouseLine}, ${1 - dist / connectionDistance})`;
+            ctx.strokeStyle = `rgba(${mouseLineColor}, ${1 - dist / connectionDistance})`;
             ctx.stroke();
-          }
+        }
       }
 
       animationFrameId = requestAnimationFrame(draw);
@@ -146,9 +152,6 @@ export const NetworkGame: React.FC = () => {
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('click', handleClick);
     
-    // Observer for dark mode changes to trigger redraw with new colors immediately if needed
-    // But rAF handles it mostly.
-    
     resize();
     draw();
 
@@ -161,7 +164,7 @@ export const NetworkGame: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[500px] overflow-hidden border-y border-slate-200 dark:border-white/5 transition-colors duration-500">
+    <section className="relative w-full h-[500px] overflow-hidden bg-[#F5F5F7] dark:bg-brand-black border-y border-slate-200 dark:border-white/5 transition-colors duration-500">
       <div className="absolute top-6 left-6 z-10 pointer-events-none">
         <h3 className="font-display text-2xl font-bold text-slate-400 dark:text-white/50">The Network</h3>
         <p className="text-sm text-slate-400 dark:text-white/30">Interactive Canvas</p>

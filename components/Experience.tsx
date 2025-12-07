@@ -8,41 +8,46 @@ const projects = [
     role: "Chief of Staff",
     description: "Guiding the Indian startup ecosystem under Prof. Thillai Rajan.",
     className: "md:col-span-2 md:row-span-2", 
-    gradient: "from-blue-50/50 to-slate-50/50 dark:from-blue-900/10 dark:to-slate-900/10"
+    gradient: "from-accent-blue/10 to-slate-50 dark:from-accent-blue/20 dark:to-slate-900/20",
+    borderHover: "hover:border-accent-blue"
   },
   {
     title: "India Speaks Ai",
     role: "Election Tech & Outreach",
     description: "Managed strategic partnerships for the June 2024 Election Cycle.",
     className: "md:col-span-1 md:row-span-2",
-    gradient: "from-indigo-50/50 to-slate-50/50 dark:from-indigo-900/10 dark:to-slate-900/10"
+    gradient: "from-accent-purple/10 to-slate-50 dark:from-accent-purple/20 dark:to-slate-900/20",
+    borderHover: "hover:border-accent-purple"
   },
   {
     title: "Yellow Bag Foundation",
     role: "Sustainability Lead",
     description: "Empowering women self-help groups & promoting sustainable living globally.",
     className: "md:col-span-2 md:row-span-1",
-    gradient: "from-yellow-50/50 to-amber-50/50 dark:from-yellow-900/10 dark:to-amber-900/10"
+    gradient: "from-accent-yellow/10 to-amber-50 dark:from-accent-yellow/20 dark:to-amber-900/10",
+    borderHover: "hover:border-accent-yellow"
   },
   {
     title: "Pick Your Trail",
     role: "Experience Manager",
     description: "Enhancing international travel experiences.",
     className: "md:col-span-1 md:row-span-1",
-    gradient: "from-teal-50/50 to-slate-50/50 dark:from-teal-900/10 dark:to-slate-900/10"
+    gradient: "from-accent-aqua/10 to-slate-50 dark:from-accent-aqua/20 dark:to-slate-900/20",
+    borderHover: "hover:border-accent-aqua"
   },
   {
     title: "The Hindu Metroplus",
     role: "Journalism",
     description: "Travel, Lifestyle, & Tamil Heritage.",
     className: "md:col-span-1 md:row-span-1",
-    gradient: "from-purple-50/50 to-slate-50/50 dark:from-purple-900/10 dark:to-slate-900/10"
+    gradient: "from-accent-red/10 to-slate-50 dark:from-accent-red/20 dark:to-slate-900/20",
+    borderHover: "hover:border-accent-red"
   },
 ];
 
 export const Experience: React.FC = () => {
   return (
-    <section id="works" className="py-24 px-6 relative">
+    <section id="works" className="py-24 px-6 bg-[#F5F5F7] dark:bg-brand-black relative transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -51,7 +56,7 @@ export const Experience: React.FC = () => {
           className="mb-16"
         >
           <h2 className="font-display text-4xl font-bold mb-4 text-slate-900 dark:text-slate-100">Selected Works</h2>
-          <div className="h-1 w-20 bg-brand-periwinkle rounded-full" />
+          <div className="h-1 w-20 bg-accent-green rounded-full shadow-[0_0_10px_rgba(63,173,75,0.4)]" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[200px] gap-4">
@@ -65,10 +70,11 @@ export const Experience: React.FC = () => {
               className={`
                 group relative p-8 rounded-3xl border border-slate-200 dark:border-white/5 
                 bg-gradient-to-br ${project.gradient} backdrop-blur-xl 
-                overflow-hidden hover:border-slate-300 dark:hover:border-white/10 transition-all duration-500
+                overflow-hidden transition-all duration-500
                 flex flex-col justify-between
-                shadow-sm hover:shadow-md dark:shadow-none
+                shadow-sm hover:shadow-xl dark:shadow-none
                 ${project.className}
+                ${project.borderHover}
               `}
             >
               <div className="absolute inset-0 bg-white/40 dark:bg-white/0 group-hover:bg-white/60 dark:group-hover:bg-white/5 transition-colors duration-500" />

@@ -7,13 +7,15 @@ const TimelineItem = ({
   title, 
   desc, 
   icon: Icon, 
-  align 
+  align,
+  accentColorClass
 }: { 
   year: string; 
   title: string; 
   desc: string; 
   icon: any; 
-  align: 'left' | 'right' 
+  align: 'left' | 'right';
+  accentColorClass: string;
 }) => {
   return (
     <div className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full ${align === 'right' ? 'md:flex-row-reverse' : ''}`}>
@@ -26,7 +28,7 @@ const TimelineItem = ({
         className={`flex-1 text-center ${align === 'left' ? 'md:text-right' : 'md:text-left'}`}
       >
         <div className={`inline-flex items-center gap-2 mb-2 ${align === 'left' ? 'md:flex-row-reverse' : 'md:flex-row'} justify-center md:justify-start`}>
-          <span className="px-3 py-1 rounded-full bg-brand-sepia/10 text-brand-sepia dark:text-[#D6CFC7] text-sm font-semibold border border-brand-sepia/20">
+          <span className={`px-3 py-1 rounded-full bg-white dark:bg-brand-sepia/10 ${accentColorClass} text-sm font-semibold border border-slate-200 dark:border-brand-sepia/20`}>
             {year}
           </span>
         </div>
@@ -36,11 +38,11 @@ const TimelineItem = ({
 
       {/* Center Line & Icon */}
       <div className="relative flex flex-col items-center">
-        <div className="w-px h-24 bg-gradient-to-b from-transparent to-brand-sepia/30 dark:to-brand-sepia/50"></div>
-        <div className="p-4 rounded-full bg-[#EAE5DE] dark:bg-[#1a1612] border-2 border-brand-sepia/30 dark:border-brand-sepia/50 z-10 shadow-xl">
-          <Icon size={24} className="text-brand-sepia dark:text-[#D6CFC7]" />
+        <div className="w-px h-24 bg-gradient-to-b from-transparent to-slate-300 dark:to-brand-sepia/50"></div>
+        <div className={`p-4 rounded-full bg-white dark:bg-[#1a1612] border-2 border-slate-200 dark:border-brand-sepia/50 z-10 shadow-xl ${accentColorClass}`}>
+          <Icon size={24} />
         </div>
-        <div className="w-px h-24 bg-gradient-to-b from-brand-sepia/30 dark:from-brand-sepia/50 to-transparent"></div>
+        <div className="w-px h-24 bg-gradient-to-b from-slate-300 dark:from-brand-sepia/50 to-transparent"></div>
       </div>
 
       {/* Spacer for alignment */}
@@ -86,6 +88,7 @@ export const FamilyHistory: React.FC = () => {
             desc="Descendant of Tamil Scholar Karmega Konar, namesake of the arterial road in Madurai. His work in preserving Tamil literature established a family tradition of cultural stewardship and educational excellence."
             icon={BookOpen}
             align="left"
+            accentColorClass="text-accent-yellow"
           />
 
           <TimelineItem 
@@ -94,6 +97,7 @@ export const FamilyHistory: React.FC = () => {
             desc="A period marked by resilience—repatriation from Burma and Vietnam led to new beginnings. The family rebuilt through education, producing PhD holders and Silicon Valley professionals who bridged the East and West."
             icon={Globe}
             align="right"
+            accentColorClass="text-accent-blue"
           />
 
           <TimelineItem 
@@ -102,6 +106,7 @@ export const FamilyHistory: React.FC = () => {
             desc="The cycle continues with the Madurai Local History Group. We are actively documenting, restoring, and revitalizing the architectural narrative of one of the world's oldest living cities, ensuring the past informs the future."
             icon={Calendar}
             align="left"
+            accentColorClass="text-accent-green"
           />
         </div>
       </section>

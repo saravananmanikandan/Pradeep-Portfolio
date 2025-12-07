@@ -11,9 +11,9 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col gap-4 items-start">
               <a 
                 href="mailto:pradeepkanna585@gmail.com"
-                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-brand-periwinkle dark:hover:text-brand-periwinkle transition-colors group"
+                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-red transition-colors group"
               >
-                <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-brand-periwinkle/10 transition-colors">
+                <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-red/10 transition-colors">
                     <Mail size={20} />
                 </div>
                 pradeepkanna585@gmail.com
@@ -22,18 +22,18 @@ export const Footer: React.FC = () => {
                 href="https://linkedin.com/in/pradeepkanna" 
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-brand-periwinkle dark:hover:text-brand-periwinkle transition-colors group"
+                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-blue transition-colors group"
               >
-                <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-brand-periwinkle/10 transition-colors">
+                <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-blue/10 transition-colors">
                     <Linkedin size={20} />
                 </div>
                 LinkedIn Profile
               </a>
               <a 
                 href="#"
-                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-brand-periwinkle dark:hover:text-brand-periwinkle transition-colors group"
+                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-green transition-colors group"
               >
-                 <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-brand-periwinkle/10 transition-colors">
+                 <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-green/10 transition-colors">
                     <ArrowUpRight size={20} />
                 </div>
                 Taptol
@@ -57,12 +57,12 @@ export const Footer: React.FC = () => {
         <div className="animate-ticker whitespace-nowrap flex gap-16 items-center">
           {[1,2,3,4].map(i => (
              <React.Fragment key={i}>
-                <span className="text-slate-500 dark:text-slate-400 font-display text-lg uppercase tracking-wider">Recognition: Invited to PM's Meeting (Feb 2025)</span>
-                <span className="w-2 h-2 rounded-full bg-brand-periwinkle/50"></span>
-                <span className="text-slate-500 dark:text-slate-400 font-display text-lg uppercase tracking-wider">Ministry of Textiles Report</span>
-                <span className="w-2 h-2 rounded-full bg-brand-periwinkle/50"></span>
-                <span className="text-slate-500 dark:text-slate-400 font-display text-lg uppercase tracking-wider">Bharat Tex 2025</span>
-                <span className="w-2 h-2 rounded-full bg-brand-periwinkle/50"></span>
+                <span className="text-slate-500 dark:text-slate-400 font-display text-lg uppercase tracking-wider hover:text-accent-purple transition-colors">Recognition: Invited to PM's Meeting (Feb 2025)</span>
+                <span className="w-2 h-2 rounded-full bg-accent-yellow/50"></span>
+                <span className="text-slate-500 dark:text-slate-400 font-display text-lg uppercase tracking-wider hover:text-accent-aqua transition-colors">Ministry of Textiles Report</span>
+                <span className="w-2 h-2 rounded-full bg-accent-red/50"></span>
+                <span className="text-slate-500 dark:text-slate-400 font-display text-lg uppercase tracking-wider hover:text-accent-green transition-colors">Bharat Tex 2025</span>
+                <span className="w-2 h-2 rounded-full bg-accent-blue/50"></span>
              </React.Fragment>
           ))}
         </div>
