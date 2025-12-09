@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Loader2, Calendar, Newspaper, PenTool } from 'lucide-react';
+import { ArrowRight, Loader2, Calendar, Newspaper } from 'lucide-react';
 import { BlogPost } from '../types';
 
-type TabType = 'blogs' | 'events' | 'media';
+type TabType = 'events' | 'media';
 
 const SpotlightCard: React.FC<{ item: BlogPost; index: number }> = ({ item, index }) => {
   const divRef = useRef<HTMLAnchorElement>(null);
@@ -34,7 +34,8 @@ const SpotlightCard: React.FC<{ item: BlogPost; index: number }> = ({ item, inde
 
   // Determine if this item should be clickable
   // Events are static updates, others (posts, articles) are links
-  const isEvent = item.type === 'events';
+  // Note: WP API usually returns singular 'event' or custom post type name, checking loosely if it contains event or checking specific types
+  const isEvent = item.type === 'event' || item.type === 'events'; 
   const isClickable = !isEvent;
 
   // Use ACF URL for Hindu articles if available, otherwise fallback to WP link
@@ -111,29 +112,25 @@ const SpotlightCard: React.FC<{ item: BlogPost; index: number }> = ({ item, inde
 };
 
 export const Initiatives: React.FC<{ onNavigate?: (page: 'initiatives') => void }> = ({ onNavigate }) => {
-  const [activeTab, setActiveTab] = useState<TabType>('blogs');
+  const [activeTab, setActiveTab] = useState<TabType>('media');
   const [data, setData] = useState<{
-    blogs: BlogPost[];
     events: BlogPost[];
     media: BlogPost[];
-  }>({ blogs: [], events: [], media: [] });
+  }>({ events: [], media: [] });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [postsRes, eventsRes, hinduRes] = await Promise.all([
-          fetch('https://pradeepkanna.com/wp-json/wp/v2/posts?per_page=3'),
+        const [eventsRes, hinduRes] = await Promise.all([
           fetch('https://pradeepkanna.com/wp-json/wp/v2/events?per_page=3'),
           fetch('https://pradeepkanna.com/wp-json/wp/v2/hindu_article?per_page=3')
         ]);
 
-        const posts = await postsRes.json();
         const events = await eventsRes.json();
         const hindu = await hinduRes.json();
 
         setData({
-          blogs: posts,
           events: events,
           media: hindu
         });
@@ -149,9 +146,8 @@ export const Initiatives: React.FC<{ onNavigate?: (page: 'initiatives') => void 
 
   // Using accents for tabs
   const tabs = [
-    { id: 'blogs', label: 'Thoughts', icon: PenTool, activeColor: 'text-accent-yellow' },
-    { id: 'events', label: 'Events', icon: Calendar, activeColor: 'text-accent-purple' },
     { id: 'media', label: 'Media', icon: Newspaper, activeColor: 'text-accent-red' },
+    { id: 'events', label: 'Events', icon: Calendar, activeColor: 'text-accent-purple' },
   ];
 
   const currentData = data[activeTab];

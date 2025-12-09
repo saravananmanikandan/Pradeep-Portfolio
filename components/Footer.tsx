@@ -7,25 +7,25 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 mb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h2 className="font-display text-5xl md:text-6xl font-bold mb-8 text-slate-900 dark:text-slate-100">Let's Connect.</h2>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-6xl font-bold mb-8 text-slate-900 dark:text-slate-100">Let's Connect.</h2>
             <div className="flex flex-col gap-4 items-start">
               <a 
                 href="mailto:pradeepkanna585@gmail.com"
-                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-red transition-colors group"
+                className="flex items-center gap-3 text-sm sm:text-base md:text-xl text-slate-600 dark:text-slate-400 hover:text-accent-red transition-colors group break-all sm:break-normal"
               >
-                <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-red/10 transition-colors">
-                    <Mail size={20} />
+                <div className="p-2 sm:p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-red/10 transition-colors shrink-0">
+                    <Mail size={16} className="sm:w-5 sm:h-5" />
                 </div>
                 pradeepkanna585@gmail.com
               </a>
               <a 
-                href="https://linkedin.com/in/pradeepkanna" 
+                href="https://www.linkedin.com/in/pradeep-kanna-302954301/" 
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-blue transition-colors group"
+                className="flex items-center gap-3 text-sm sm:text-base md:text-xl text-slate-600 dark:text-slate-400 hover:text-accent-blue transition-colors group"
               >
-                <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-blue/10 transition-colors">
-                    <Linkedin size={20} />
+                <div className="p-2 sm:p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-blue/10 transition-colors shrink-0">
+                    <Linkedin size={16} className="sm:w-5 sm:h-5" />
                 </div>
                 LinkedIn Profile
               </a>
@@ -33,18 +33,18 @@ export const Footer: React.FC = () => {
                 href="https://topmate.io/pradeep_kanna12/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-3 text-xl text-slate-600 dark:text-slate-400 hover:text-accent-green transition-colors group"
+                className="flex items-center gap-3 text-sm sm:text-base md:text-xl text-slate-600 dark:text-slate-400 hover:text-accent-green transition-colors group"
               >
-                 <div className="p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-green/10 transition-colors">
-                    <ArrowUpRight size={20} />
+                 <div className="p-2 sm:p-3 rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/5 group-hover:bg-accent-green/10 transition-colors shrink-0">
+                    <ArrowUpRight size={16} className="sm:w-5 sm:h-5" />
                 </div>
                 Topmate
               </a>
             </div>
           </div>
           
-          <div className="flex flex-col justify-end items-start md:items-end text-right">
-             <p className="text-slate-500 dark:text-slate-500 max-w-sm text-left md:text-right mb-6">
+          <div className="flex flex-col justify-end items-start text-left">
+             <p className="text-slate-500 dark:text-slate-500 max-w-sm text-left mb-6">
                 Open for collaborations on Policy Research, Heritage Conservation, and Strategic Tech Initiatives.
              </p>
              <div className="text-slate-600 dark:text-slate-600 text-sm">

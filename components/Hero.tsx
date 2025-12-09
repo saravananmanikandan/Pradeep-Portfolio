@@ -296,25 +296,27 @@ export const Hero: React.FC = () => {
 
         {/* --- Bottom Row: Roles & Interactive --- */}
 
-        {/* Box 1: Roles Description & Socials */}
+        {/* Box 1: Roles Description & Socials - Responsive Update */}
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="md:col-span-5 h-[300px] bg-white dark:bg-[#1A1A1A] rounded-[2rem] p-8 md:p-10 flex flex-col justify-between border border-slate-200 dark:border-white/5 group relative overflow-hidden shadow-xl"
+            className="md:col-span-5 min-h-[300px] md:h-[300px] bg-white dark:bg-[#1A1A1A] rounded-[2rem] p-6 md:p-10 flex flex-col justify-between border border-slate-200 dark:border-white/5 group relative overflow-hidden shadow-xl"
         >
              <div className="absolute top-0 right-0 w-64 h-64 bg-accent-purple/5 dark:bg-accent-purple/10 rounded-full blur-[80px] group-hover:bg-accent-purple/10 dark:group-hover:bg-accent-purple/20 transition-colors" />
              
-             <div className="relative z-10">
-                <h3 className="font-display text-3xl md:text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
-                   Engineer. Journalist. Historian.
-                </h3>
-                <p className="font-display text-3xl md:text-4xl font-bold text-slate-300 dark:text-white/30 leading-tight mb-6">
-                   Startup Generalist.
-                </p>
+             <div className="relative z-10 flex flex-col gap-4">
+                <div>
+                    <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-1">
+                    Engineer. Journalist. Historian.
+                    </h3>
+                    <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-slate-300 dark:text-white/30 leading-tight">
+                    Startup Generalist.
+                    </p>
+                </div>
 
                 {/* Social Icons */}
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <a 
                         href="https://linkedin.com/in/pradeepkanna" 
                         target="_blank" 
@@ -356,19 +358,19 @@ export const Hero: React.FC = () => {
                 </div>
              </div>
 
-             <div className="relative z-10 flex items-center justify-between mt-auto">
-                <span className="px-4 py-2 rounded-full border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-500 dark:text-white/50 uppercase tracking-wider group-hover:bg-slate-50 dark:group-hover:bg-white/5 transition-colors">
+             <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 mt-6 md:mt-auto">
+                <span className="px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-slate-200 dark:border-white/10 text-[10px] md:text-xs font-mono text-slate-500 dark:text-white/50 uppercase tracking-wider group-hover:bg-slate-50 dark:group-hover:bg-white/5 transition-colors whitespace-nowrap">
                     Based in India
                 </span>
                 
                 {/* Blog Button */}
                 <button 
                     onClick={scrollToInitiatives}
-                    className="flex items-center gap-3 pl-4 pr-2 py-2 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-brand-periwinkle hover:text-white dark:hover:bg-brand-periwinkle group/btn transition-all duration-300 cursor-pointer"
+                    className="flex items-center gap-2 md:gap-3 pl-3 pr-1.5 py-1.5 md:pl-4 md:pr-2 md:py-2 rounded-full bg-slate-100 dark:bg-white/5 hover:bg-brand-periwinkle hover:text-white dark:hover:bg-brand-periwinkle group/btn transition-all duration-300 cursor-pointer"
                 >
-                    <span className="text-sm font-medium text-slate-900 dark:text-white group-hover/btn:text-white">Read Blog</span>
-                    <div className="w-8 h-8 rounded-full bg-white dark:bg-white/10 flex items-center justify-center text-slate-900 dark:text-white group-hover/btn:bg-white/20 group-hover/btn:text-white transition-all">
-                        <ArrowDownRight size={16} />
+                    <span className="text-xs md:text-sm font-medium text-slate-900 dark:text-white group-hover/btn:text-white whitespace-nowrap">Read Blog</span>
+                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white dark:bg-white/10 flex items-center justify-center text-slate-900 dark:text-white group-hover/btn:bg-white/20 group-hover/btn:text-white transition-all">
+                        <ArrowDownRight size={14} className="md:w-4 md:h-4" />
                     </div>
                 </button>
              </div>
@@ -395,7 +397,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="md:col-span-3 h-[300px] bg-slate-50 dark:bg-[#1A1A1A] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 shadow-xl transition-colors duration-500"
+            className="hidden md:block md:col-span-3 h-[300px] bg-slate-50 dark:bg-[#1A1A1A] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 shadow-xl transition-colors duration-500"
         >
             <MemoryGame />
         </motion.div>
